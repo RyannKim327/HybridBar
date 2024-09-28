@@ -97,7 +97,7 @@ fn start_tooltip_loop(label_ref: &mut LabelWidget) {
 fn start_label_loop(label_ref: &mut LabelWidget) {
     let label = take(&mut label_ref.label);
     let command = label_ref.command.to_owned();
-
+    // println!("{}", label_ref);;
     // TODO: To initiate the update rate, also to modify if the
     // update_rate was empty to to set to 500ms automatically.
     
@@ -132,14 +132,13 @@ fn start_label_loop(label_ref: &mut LabelWidget) {
             new_text = new_text.replace("%command%", &use_aliases(&command));
             
             // TODO: To use the regex for string formatting
-            /* let pattern = Regex::new(r"%(.*?)%").unwrap();
-            if let Some(capt) = pattern.is_match(&new_text) {
-                if let Some(first) = capt.get(1) {
-                    let format_ = format!("%{}%", first.as_str());
-                    new_text = new_text.replace(&format_, &use_aliases(label_ref[first.as_str()]));
-                }
-            }
-            */
+            
+            // let pattern = Regex::new(r"%(?P<data>\w+)%").expect("Failed to create regex");
+            //
+            // if let Some(capt) = pattern.captures(&new_text) {
+            //     new_text = new_text.replace(format!("%{}%", &capt["data"]), &use_aliases(&label_ref.command.get(capt["data"])))
+            // }
+            
 
             if !label.text().eq(&new_text) && !new_text.is_empty() {
                 // NOTE: I'd just used this print function to debug
