@@ -1,15 +1,21 @@
 /* Label Color. Config default is white. */
 label {
-    color:          white;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0.25rem 0.5rem;
+  padding: 0 0.5rem;
+  border-radius: 3px;
+  border: 1px white solid;
+  font-size: 0.8rem;
 }
 
 /* Button Configuration */
 button {
-    font-weight:    normal;
-    border:         none;
-    box-shadow:     none;
-    margin-bottom: -8px;
-    margin-top:    -8px;
-    padding-right:  0;
-    padding-left:   0;
+  font-weight: normal;
+  border: none;
+  box-shadow: none;
+  margin-bottom: -8px;
+  margin-top: -8px;
+  padding-right: 0;
+  padding-left: 0;
 }
