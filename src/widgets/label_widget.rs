@@ -1,3 +1,5 @@
+use regex::Regex;
+
 use crate::{
     config,
     constants::{
@@ -122,12 +124,22 @@ fn start_label_loop(label_ref: &mut LabelWidget) {
             
             // INFO: This will automatically add the %command% for formatting
             // If ever that the text is empty.
-            if new_text.is_empty() {
+            if new_text.is_empty() && !command.is_empty() {
                 new_text.push_str("%command%");
             }
             
             // INFO: This is to replace the %command% to the executed command
             new_text = new_text.replace("%command%", &use_aliases(&command));
+            
+            // TODO: To use the regex for string formatting
+            /* let pattern = Regex::new(r"%(.*?)%").unwrap();
+            if let Some(capt) = pattern.is_match(&new_text) {
+                if let Some(first) = capt.get(1) {
+                    let format_ = format!("%{}%", first.as_str());
+                    new_text = new_text.replace(&format_, &use_aliases(label_ref[first.as_str()]));
+                }
+            }
+            */
 
             if !label.text().eq(&new_text) && !new_text.is_empty() {
                 // NOTE: I'd just used this print function to debug

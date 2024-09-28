@@ -7,22 +7,22 @@
         "a": 0
     },
     "left-label_username": {
-        "text": "RyannKim327 [%command%]",
+        "text": " RyannKim327 [%command%]",
         "command": "hyprctl activeworkspace -j | jq -r \".name\"",
-        "update_anim": "slide_left"
+        "update_anim": "crossfade"
     },
     "left-label_music": {
         "text": "%command%",
-        "command": "playerctl metadata title | head -c 50",
+        "command": "playerctl metadata title | head -c 75",
         "update_anim": "slide_left"
     },
     "centered-label_timedate": {
         "text": "%command%",
-        "command": "date +\"%m-%d-%y %H:%M\""
+        "command": "date +\"%m-%d-%y \"\" %H:%M\"",
+        "update_anim": "crossfade"
     },
     "right-label_right1": {
-        "text": "",
-        "command": "cpuinfo.sh | jq -r \".text\"",
-        "tooltip": "An example of a right-aligned label"
+        "text": "󰍛 %command%",
+        "command": "cpuinfo.sh | jq -r \".text\""
     }
 }
