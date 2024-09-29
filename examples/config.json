@@ -9,7 +9,7 @@
     "left-label_username": {
         "text": " RyannKim327 [%command%]",
         "command": "hyprctl activeworkspace -j | jq -r \".name\"",
-        "update_anim": "crossfade"
+        "anim_duration": 0
     },
     "left-label_music": {
         "text": "%command%",
@@ -18,8 +18,7 @@
     },
     "centered-label_timedate": {
         "text": "%command%",
-        "command": "date +\"%m-%d-%y \"\" %H:%M\"",
-        "update_anim": "crossfade"
+        "command": "date +\"%m-%d-%y \"\" %H:%M\""
     },
     "right-label_right1": {
         "text": "󰍛 %command%",
