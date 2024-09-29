@@ -1,4 +1,4 @@
-use regex::Regex;
+// use regex::Regex;
 
 use crate::{
     config,
@@ -102,21 +102,34 @@ fn start_label_loop(label_ref: &mut LabelWidget) {
     // update_rate was empty to to set to 500ms automatically.
     
     let mut update_rate: u64 = label_ref.update_rate;
+    let mut anim_speed: u32 = label_ref.anim_duration;
+    let text = label_ref.text.to_owned();
+    let listen = label_ref.listen;
+    let update_anim = take(&mut label_ref.update_anim).expect(ERR_WRONG_LABEL_RANIM);
+    let revealer = take(&mut label_ref.revealer);
 
     if !command.is_empty() {
         update_rate = 500;
     }
 
-    if command.is_empty() || update_rate <= 3 {
+    if command.is_empty() {
         // Not eligible, cancel.
         return;
     }
 
-    let text = label_ref.text.to_owned();
-    let listen = label_ref.listen;
-    let update_anim = take(&mut label_ref.update_anim).expect(ERR_WRONG_LABEL_RANIM);
-    let revealer = take(&mut label_ref.revealer);
-    let anim_speed = label_ref.anim_duration;
+    // INFO: This is just to update the animation speed for less not showing due to animation
+    // I've experienced some issue that I want to update the result everytime, that's why I added
+    // this, you may also check my configuration thou.
+    if update_anim == RevealerTransitionType::Crossfade && update_rate > 250 && update_rate <= 0 && anim_speed > 250 {
+        if update_rate <= u32::MAX as u64 {
+            if update_rate > 10{
+                anim_speed = update_rate as u32;
+            }else{
+                anim_speed = 0;
+            }
+        }
+    }
+
     let tick = move || {
         if !listen {
             let mut new_text = String::default();
